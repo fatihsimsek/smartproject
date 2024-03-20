@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Order\" />
+    <None Remove="Order\Command\" />
+    <None Remove="Order\Query\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Order\" />
+    <Folder Include="Order\Command\" />
+    <Folder Include="Order\Query\" />
+  </ItemGroup>
 </Project>
