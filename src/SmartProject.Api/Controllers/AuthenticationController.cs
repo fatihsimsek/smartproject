@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartProject.Api.ActionResults;
 using SmartProject.Application.Identity;
-using SmartProject.Application.Order;
 
 namespace SmartProject.Api.Controllers;
 
