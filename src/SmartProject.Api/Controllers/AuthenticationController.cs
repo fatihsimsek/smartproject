@@ -20,7 +20,7 @@ public class AuthenticationController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost]
+    [HttpPost("Login")]
     [ProducesResponseType(typeof(List<UserDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Envelope), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
