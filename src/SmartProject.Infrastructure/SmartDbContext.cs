@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using SmartProject.Domain.Features;
 
 namespace SmartProject.Infrastructure
 {
@@ -9,6 +10,8 @@ namespace SmartProject.Infrastructure
              : base(options)
         {
         }
+
+        public DbSet<Order> Orders { get; set; }
     }
 }
 
