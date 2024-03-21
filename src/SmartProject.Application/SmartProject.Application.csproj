@@ -10,10 +10,17 @@
     <None Remove="Order\" />
     <None Remove="Order\Command\" />
     <None Remove="Order\Query\" />
+    <None Remove="Common\" />
+    <None Remove="Order\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Order\" />
     <Folder Include="Order\Command\" />
     <Folder Include="Order\Query\" />
+    <Folder Include="Common\" />
+    <Folder Include="Order\Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 </Project>

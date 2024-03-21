@@ -1,5 +1,5 @@
 ﻿
-namespace SmartProject.Domain.Common
+namespace SmartProject.Domain.Exceptions
 {
     public class SmartException : Exception
     {
