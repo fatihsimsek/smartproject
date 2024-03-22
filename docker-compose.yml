@@ -1,1 +1,13 @@
-﻿
+﻿version: '3.8'
+
+services:
+
+  server:
+    container_name: smartproject-api
+    image: fatihsimsek/smartproject-api:1.0
+    build:
+      context: .
+      dockerfile: ./src/SmartProject.Api/Dockerfile
+    ports:
+      - "5001:5001"
+    restart: on-failure
