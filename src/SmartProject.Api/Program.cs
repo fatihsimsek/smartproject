@@ -19,6 +19,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(options =>
+{
+    options.AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowAnyOrigin()
+           .WithExposedHeaders("Content-Disposition");
+});
+
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.MapControllers();
