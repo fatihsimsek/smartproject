@@ -12,6 +12,7 @@ RUN dotnet restore "SmartProject.Api.csproj" && \
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENV ASPNETCORE_URLS http://*:5001
+ENV ASPNETCORE_URLS https://*:5001
+ENV ASPNETCORE_ENVIRONMENT Development
 EXPOSE 5001
 ENTRYPOINT ["dotnet", "SmartProject.Api.dll"]
