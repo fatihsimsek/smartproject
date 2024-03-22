@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartProject.Api.ActionResults;
 using SmartProject.Application.Order;
@@ -7,7 +8,7 @@ namespace SmartProject.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Produces("application/json")]
+    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly ILogger<OrderController> _logger;
@@ -20,7 +21,7 @@ namespace SmartProject.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(List<OrderDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrderDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Envelope), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(long id)
         {

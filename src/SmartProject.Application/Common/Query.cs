@@ -3,6 +3,8 @@ using MediatR;
 
 namespace SmartProject.Application.Common
 {
-    public abstract record Query<T> : IRequest<T>;
+    public abstract class Query<T> : IRequest<T>
+    {
+    }
 }
 

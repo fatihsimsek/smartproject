@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartProject.Api.ActionResults;
 using SmartProject.Application.Identity;
@@ -7,7 +8,7 @@ namespace SmartProject.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Produces("application/json")]
+[AllowAnonymous]
 public class AuthenticationController : ControllerBase
 {
     private readonly ILogger<AuthenticationController> _logger;
@@ -21,12 +22,12 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("Login")]
-    [ProducesResponseType(typeof(List<UserDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(UserTokenDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Envelope), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
     {
-        var userDto = await _mediator.Send(new UserLoginCommand() { });
-        return Ok(userDto);
+        var userTokenDto = await _mediator.Send(new UserLoginCommand() { Email = userLoginDto.Email, Password = userLoginDto.Password });
+        return Ok(userTokenDto);
     }
 }
 

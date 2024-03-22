@@ -3,7 +3,7 @@ using MediatR;
 
 namespace SmartProject.Application.Order
 {
-	public sealed record GetOrderQuery : Common.Query<OrderDto>
+	public sealed class GetOrderQuery : Common.Query<OrderDto>
 	{
 		public long OrderId { get; set; }
 	}

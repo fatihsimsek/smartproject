@@ -4,7 +4,7 @@ using SmartProject.Application.Common;
 
 namespace SmartProject.Application.Order
 {
-	public sealed record CreateOrderCommand() : Common.Command<Response<long>>
+	public sealed class CreateOrderCommand : Common.Command<Response<long>>
     {
         public long CustomerId { get; set; }
         public long ProductId { get; set; }
