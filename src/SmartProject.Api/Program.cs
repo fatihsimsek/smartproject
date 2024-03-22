@@ -1,4 +1,6 @@
-﻿using Serilog;
+﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Serilog;
 using SmartProject.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,11 @@ builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Confi
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
+
+builder.Services.AddHealthChecks()
+    .AddCheck("self", () => HealthCheckResult.Healthy("Application is running"))
+    .AddSqlServer(builder.Configuration["Database:SqlConnectionString"]!);
 
 var app = builder.Build();
 
@@ -25,6 +32,12 @@ app.UseCors(options =>
            .AllowAnyHeader()
            .AllowAnyOrigin()
            .WithExposedHeaders("Content-Disposition");
+});
+
+app.MapHealthChecks("healthz");
+app.MapHealthChecks("liveness", new HealthCheckOptions
+{
+    Predicate = r => r.Name.Contains("self")
 });
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
