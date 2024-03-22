@@ -4,7 +4,7 @@ using SmartProject.Domain.Features;
 
 namespace SmartProject.Infrastructure
 {
-	public sealed class SmartDbContext : DbContext
+	public sealed class SmartDbContext : DbContext, ISmartDbContext
 	{
         public SmartDbContext(DbContextOptions<SmartDbContext> options)
              : base(options)

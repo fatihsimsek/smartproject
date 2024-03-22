@@ -8,10 +8,10 @@ namespace SmartProject.Infrastructure
 {
     public class EntityRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        private readonly SmartDbContext _context;
+        private readonly ISmartDbContext _context;
         private readonly DbSet<TEntity> _entitySet;
 
-        public EntityRepository(SmartDbContext context)
+        public EntityRepository(ISmartDbContext context)
         {
             _context = context;
             _entitySet = _context.Set<TEntity>();

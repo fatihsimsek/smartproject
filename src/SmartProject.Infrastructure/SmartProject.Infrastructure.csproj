@@ -14,8 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Configurations\" />
+    <None Remove="Features\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configurations\" />
+    <Folder Include="Features\" />
   </ItemGroup>
 </Project>
