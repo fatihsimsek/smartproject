@@ -22,8 +22,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="ActionResults\" />
+    <None Remove="Middleware\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ActionResults\" />
+    <Folder Include="Middleware\" />
   </ItemGroup>
 </Project>
