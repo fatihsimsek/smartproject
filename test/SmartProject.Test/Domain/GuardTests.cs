@@ -15,4 +15,11 @@ public class GuardTests
         string value = "SmartProject";
         Assert.DoesNotThrow(() => Guard.AgainstEmptyString(value));
     }
+
+    [Test]
+    public void EmptyStringThrowException()
+    {
+        string value = string.Empty;
+        Assert.Throws<ArgumentException>(() => Guard.AgainstEmptyString(value));
+    }
 }
