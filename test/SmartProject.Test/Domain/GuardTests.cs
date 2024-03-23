@@ -1,17 +1,18 @@
-﻿using System;
-using SmartProject.Domain.Common;
+﻿using SmartProject.Domain.Common;
 
-namespace SmartProject.Test.Domain
+namespace SmartProject.Test.Domain;
+
+public class GuardTests
 {
-    [TestFixture]
-    public class GuardTests
-	{
-		[Test]
-		public void ValueIsNotEmpty()
-		{
-			string value = "SmartProject";
-			Assert.DoesNotThrow(() => Guard.AgainstEmptyString(value));
-		}
-	}
-}
+    [SetUp]
+    public void Setup()
+    {
+    }
 
+    [Test]
+    public void NotEmptyStringDoesNotThrowException()
+    {
+        string value = "SmartProject";
+        Assert.DoesNotThrow(() => Guard.AgainstEmptyString(value));
+    }
+}
