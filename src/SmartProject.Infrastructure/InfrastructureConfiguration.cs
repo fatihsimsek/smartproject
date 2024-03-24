@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
+using SmartProject.Domain;
+using SmartProject.Domain.Features;
+using SmartProject.Infrastructure.Features;
 
 namespace SmartProject.Infrastructure
 {
@@ -35,6 +39,9 @@ namespace SmartProject.Infrastructure
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            services.AddDbContext<ISmartDbContext, SmartDbContext>(builder => builder.UseSqlServer(configuration["ConnectionStrings:SmartProject"]));
+            services.AddTransient<IRepository<Order>, OrderRepository>();
 
             return services;
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using SmartProject.Domain.Common;
 using SmartProject.Domain.Features;
+using SmartProject.Infrastructure.Configurations;
 
 namespace SmartProject.Infrastructure
 {
@@ -12,6 +14,13 @@ namespace SmartProject.Infrastructure
         }
 
         public DbSet<Order> Orders { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<DomainEvent>();
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderConfiguration).Assembly);
+        }
     }
 }
 

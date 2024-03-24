@@ -40,9 +40,9 @@ namespace SmartProject.Application.Identity
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                new Claim("id", Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Name, request.Email),
-                new Claim(ClaimTypes.Email, request.Email)
+                    new Claim("id", Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Name, request.Email),
+                    new Claim(ClaimTypes.Email, request.Email)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration["JWT:ExpireMinute"])),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)

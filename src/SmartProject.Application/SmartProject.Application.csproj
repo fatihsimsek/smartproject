@@ -31,4 +31,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartProject.Infrastructure\SmartProject.Infrastructure.csproj" />
+    <ProjectReference Include="..\SmartProject.Domain\SmartProject.Domain.csproj" />
+  </ItemGroup>
 </Project>

@@ -9,7 +9,9 @@ namespace SmartProject.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.Property(e => e.Id).IsRequired();
+            builder.ToTable("SOrder");
+
+            builder.Property(e => e.Id).IsRequired().UseIdentityColumn();
 
             builder.Property(e => e.CustomerId).IsRequired();
 

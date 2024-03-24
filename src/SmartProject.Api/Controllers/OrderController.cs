@@ -25,7 +25,11 @@ namespace SmartProject.Api.Controllers
         [ProducesResponseType(typeof(Envelope), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(long id)
         {
-            var orderDto = await _mediator.Send(new GetOrderQuery() { OrderId = id });
+            OrderDto? orderDto = await _mediator.Send(new GetOrderQuery() { OrderId = id });
+
+            if (orderDto == null)
+                return NotFound(Envelope.Create($"{id} not found", System.Net.HttpStatusCode.NotFound));
+
             return Ok(orderDto);
         }
     }

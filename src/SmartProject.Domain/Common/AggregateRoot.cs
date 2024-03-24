@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SmartProject.Domain.Common
 {
 	public abstract class AggregateRoot : Entity
 	{
-		private readonly ICollection<DomainEvent> events;
+        [NotMapped]
+        private readonly ICollection<DomainEvent> events;
 
 		protected AggregateRoot()
 		{
