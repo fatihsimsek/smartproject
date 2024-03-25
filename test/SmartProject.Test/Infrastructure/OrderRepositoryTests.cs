@@ -15,20 +15,21 @@ namespace SmartProject.Test.Infrastructure
         }
 
         [Test]
-        public void GetByIdNotEmpty()
+        public void check_ExistedOrderId_GetById()
         {
-            Order returnValue = new Order() { Id = 1, CustomerId = 1, ProductId = 1 };
+            Order expectedValue = new Order() { Id = 1, CustomerId = 1, ProductId = 1 };
 
             var moqSmartDbContext = new Mock<ISmartDbContext>();
             var moqOrderDbSet = new Mock<DbSet<Order>>();
 
-            moqOrderDbSet.Setup(o => o.Find(It.IsAny<long>())).Returns(returnValue);
+            moqOrderDbSet.Setup(o => o.Find(It.IsAny<long>())).Returns(expectedValue);
             moqSmartDbContext.Setup(m => m.Set<Order>()).Returns(moqOrderDbSet.Object);
             
             var orderRepository = new OrderRepository(moqSmartDbContext.Object);
-            var testValue = orderRepository.GetById(1);
+            var actualValue = orderRepository.GetById(1);
 
-            Assert.That(testValue!.Id, Is.EqualTo(returnValue.Id));
+            Assert.IsNotNull(actualValue);
+            Assert.That(actualValue!.Id, Is.EqualTo(expectedValue.Id));
         }
     }
 }
