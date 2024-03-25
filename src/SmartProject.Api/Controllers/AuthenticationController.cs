@@ -22,8 +22,6 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("Login")]
-    [ProducesResponseType(typeof(UserTokenDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(Envelope), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
     {
         var userTokenDto = await _mediator.Send(new UserLoginCommand() { Email = userLoginDto.Email, Password = userLoginDto.Password });

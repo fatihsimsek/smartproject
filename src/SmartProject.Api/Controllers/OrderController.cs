@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartProject.Api.ActionResults;
 using SmartProject.Application.Order;
+using SmartProject.Domain.Common;
 
 namespace SmartProject.Api.Controllers
 {
@@ -21,16 +22,14 @@ namespace SmartProject.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(OrderDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Envelope), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(long id)
         {
-            OrderDto? orderDto = await _mediator.Send(new GetOrderQuery() { OrderId = id });
+            Result<OrderDto> result = await _mediator.Send(new GetOrderQuery() { OrderId = id });
 
-            if (orderDto == null)
+            if (!result.IsSuccess)
                 return NotFound(Envelope.Create($"{id} not found", System.Net.HttpStatusCode.NotFound));
 
-            return Ok(orderDto);
+            return Ok(result.Data);
         }
     }
 }
