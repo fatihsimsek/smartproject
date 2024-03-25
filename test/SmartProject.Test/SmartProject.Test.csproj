@@ -20,11 +20,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\SmartProject.Domain\SmartProject.Domain.csproj" />
+    <ProjectReference Include="..\..\src\SmartProject.Infrastructure\SmartProject.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Domain\" />
+    <None Remove="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
 </Project>
