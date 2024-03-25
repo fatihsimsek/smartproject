@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -21,14 +22,21 @@ namespace SmartProject.Application.Identity
     public class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, UserTokenDto>
     {
         private readonly IConfiguration _configuration;
+        private readonly IValidator<UserLoginCommand> _userLoginValidator;
 
-        public UserLoginCommandHandler(IConfiguration configuration)
+        public UserLoginCommandHandler(IConfiguration configuration, IValidator<UserLoginCommand> userLoginValidator)
         {
             _configuration = configuration;
+            _userLoginValidator = userLoginValidator;
         }
 
         public Task<UserTokenDto> Handle(UserLoginCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = _userLoginValidator.Validate(request);
+
+            if (!validationResult.IsValid)
+                return Task.FromResult(new UserTokenDto() { IsSuccess = false });
+
             if (!request.Email.Equals("fatih.simsek@outlook.com") || !request.Password.Equals("12345"))
             {
                 return Task.FromResult(new UserTokenDto() { IsSuccess = false });

@@ -15,6 +15,7 @@
     <None Remove="Identity\" />
     <None Remove="Identity\Command\" />
     <None Remove="Identity\Model\" />
+    <None Remove="Identity\Validators\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Order\" />
@@ -25,11 +26,14 @@
     <Folder Include="Identity\" />
     <Folder Include="Identity\Command\" />
     <Folder Include="Identity\Model\" />
+    <Folder Include="Identity\Validators\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartProject.Infrastructure\SmartProject.Infrastructure.csproj" />

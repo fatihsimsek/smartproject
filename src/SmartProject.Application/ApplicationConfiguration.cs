@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
+using FluentValidation;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +9,7 @@ namespace SmartProject.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         }
 	}
