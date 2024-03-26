@@ -7,6 +7,8 @@ namespace SmartProject.Redis
 	{
 		public static void AddRedis(this IServiceCollection services, RedisOptions options)
 		{
+            ArgumentNullException.ThrowIfNull(options, nameof(options));
+
             services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = options.Configuration;
